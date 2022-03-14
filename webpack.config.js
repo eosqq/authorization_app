@@ -8,6 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
+        port: 3000,
         hot: true,
         static: {
             directory: './dist',
