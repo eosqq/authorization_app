@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("aaaa")})();
+(()=>{"use strict";function e(e){return e.length>=10}(()=>{const t=document.getElementById("form"),n=t.querySelector("#input-question"),u=t.querySelector(".mui-btn");t.addEventListener("submit",(t=>{if(t.preventDefault(),e(n.value)){const e={text:n.value.trim(),date:(new Date).toJSON()};u.disabled=!0,console.log("question",e),n.value="",n.className="",u.disabled=!1}})),n.addEventListener("input",(t=>{u.disabled=!e(n.value)}))})()})();
