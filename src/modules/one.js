@@ -2,6 +2,7 @@ import { Question } from "./question";
 import { isValidate } from "./validation"
 
 const one = () => {
+    window.addEventListener('load', Question.renderList)
 
     const form = document.querySelector('#form')
     console.log(form);
