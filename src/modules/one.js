@@ -24,12 +24,14 @@ const one = () => {
                 input.className = ''
                 submitBtn.disabled = false
             })
+
         }
     })
 
     input.addEventListener('input', (e) => {
         submitBtn.disabled = !isValidate(input.value)
     })
+
 
 }
 
