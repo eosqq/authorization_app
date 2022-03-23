@@ -1,13 +1,17 @@
 import { Question } from "./question";
-import { isValidate } from "./validation"
+import { createModal, isValidate } from "./utils"
 
 const one = () => {
     window.addEventListener('load', Question.renderList)
 
     const form = document.querySelector('#form')
-    console.log(form);
     const input = form.querySelector('#input-question')
     const submitBtn = form.querySelector('.mui-btn')
+    const modalBtn = document.querySelector('.modal-btn')
+
+    modalBtn.addEventListener('click', (e) => {
+        createModal('Авторизация', '<h1>test</h1>')
+    })
 
     form.addEventListener('submit', (e) => {
         e.preventDefault()
@@ -17,7 +21,6 @@ const one = () => {
                 text: input.value.trim(),
                 date: new Date().toJSON()
             }
-
             submitBtn.disabled = true
             Question.create(question).then(() => {
                 console.log('question', question);
@@ -25,15 +28,12 @@ const one = () => {
                 input.className = ''
                 submitBtn.disabled = false
             })
-
         }
     })
 
     input.addEventListener('input', (e) => {
         submitBtn.disabled = !isValidate(input.value)
     })
-
-
 }
 
 export default one

@@ -6,12 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
-    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <link href="./style/style.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.muicss.com/mui-latest/js/mui.min.js"></script>
     <script src="./js/main.js" defer></script>
     <title>Auth</title>
   </head>
   <body>
+    <button
+    class="mui-btn mui-btn--fab mui-btn--primary modal-btn"
+    id="modal-btn"
+    >Все</button>
     <div id="sidebar">
       <div class="mui--text-white mui--text-display1 mui--align-vertical">Вопросы</div>
     </div>
@@ -31,6 +35,7 @@
             <button
                 type="submit"
                 class="mui-btn mui-btn--raised mui-btn--primary"
+                id="submitBtn"
                 >
                 Задать вопрос
             </button>
