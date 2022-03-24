@@ -28,7 +28,7 @@ export class Question {
     }
 
     static fetch(token) {
-        return fetch('https://question-app-85d33-default-rtdb.europe-west1.firebasedatabase.app/questions.json')
+        return fetch(`https://question-app-85d33-default-rtdb.europe-west1.firebasedatabase.app/questions.json?auth=${token}`)
         .then(response => response.json())
         .then(questions => {
             console.log('Questions', questions);
