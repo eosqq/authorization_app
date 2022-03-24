@@ -1,6 +1,6 @@
 export class Question {
     static create(question) {
-        return fetch ('https://question-app-85d33-default-rtdb.europe-west1.firebasedatabase.app/questions.json', {
+        return fetch('https://question-app-85d33-default-rtdb.europe-west1.firebasedatabase.app/questions.json', {
             method: 'POST',
             body: JSON.stringify(question),
             headers: {
@@ -8,8 +8,8 @@ export class Question {
             }
         })
         .then(response => response.json())
-        .then(response => {
-            question.id = response.name
+        .then(data => {
+            question.id = data.name
             return question
         })
         .then(addToLocalStorage)
@@ -17,34 +17,42 @@ export class Question {
     }
 
     static renderList() {
-        const questions = getQuestionsFromLocalStorage()
+        const questions = getQuestionFromLocalStorage()
 
         const html = questions.length
         ? questions.map(toCard).join('')
-        : `<div class="mui--text-headline">Вопросов нет</div>`
+        : `<div>Вопросов нет</div>`
 
         const list = document.querySelector('.list')
         list.innerHTML = html
     }
+
+    static fetch(token) {
+        return fetch('https://question-app-85d33-default-rtdb.europe-west1.firebasedatabase.app/questions.json')
+        .then(response => response.json())
+        .then(questions => {
+            console.log('Questions', questions);
+        })
+    }
 }
 
 function addToLocalStorage(question) {
-    const allQuestions = getQuestionsFromLocalStorage()
-    allQuestions.push(question)
-    localStorage.setItem('questions', JSON.stringify(allQuestions))
+    const all = getQuestionFromLocalStorage()
+    all.push(question)
+    localStorage.setItem('questions', JSON.stringify(all))
 }
 
-function getQuestionsFromLocalStorage() {
+function getQuestionFromLocalStorage() {
     return JSON.parse(localStorage.getItem('questions') || '[]')
 }
 
 function toCard(question) {
     return `
-    <div class="mui--text-black-54">
-    ${new Date(question.date).toLocaleDateString()}
-    ${new Date(question.date).toLocaleTimeString()}
-    </div>
-    <div>${question.text}</div>
-    <br>
+        <div>
+        ${new Date(question.date).toLocaleDateString()}
+        ${new Date(question.date).toLocaleTimeString()}
+        </div>
+        <div>${question.text}</div>
+        <br>
     `
 }
